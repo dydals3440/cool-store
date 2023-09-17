@@ -14,11 +14,6 @@ const Error = () => {
           <p className='mt-6 text-lg leading-7'>
             Sorry, we couldn't find the page you're looking for
           </p>
-          <div className='mt-10'>
-            <Link to='/' className='btn btn-secondary'>
-              GO BACK HOME
-            </Link>
-          </div>
         </div>
       </main>
     );

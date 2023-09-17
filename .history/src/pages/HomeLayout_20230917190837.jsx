@@ -4,9 +4,8 @@ const HomeLayout = () => {
   return (
     <>
       <nav>
-        <span className='text-4xl text-primary'>Comfy</span>
+        <h1 className='text-4 text-primary'>Comfy</h1>;
       </nav>
-      <Outlet />
     </>
   );
 };

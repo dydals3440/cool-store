@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import {
   About,
   Cart,
-  CheckOut,
+  Checkout,
   Error,
   HomeLayout,
   Landing,
@@ -44,8 +44,8 @@ const router = createBrowserRouter([
         element: <CheckOut />,
       },
       {
-        path: 'orders',
-        element: <Orders />,
+        path: 'products',
+        element: <Products />,
       },
     ],
   },

@@ -15,9 +15,7 @@ const Error = () => {
             Sorry, we couldn't find the page you're looking for
           </p>
           <div className='mt-10'>
-            <Link to='/' className='btn btn-secondary'>
-              GO BACK HOME
-            </Link>
+            <Link to='/'
           </div>
         </div>
       </main>

@@ -16,7 +16,7 @@ const Error = () => {
           </p>
           <div className='mt-10'>
             <Link to='/' className='btn btn-secondary'>
-              GO BACK HOME
+              123
             </Link>
           </div>
         </div>

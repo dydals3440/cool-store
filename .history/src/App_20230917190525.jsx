@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import {
   About,
   Cart,
-  CheckOut,
+  Checkout,
   Error,
   HomeLayout,
   Landing,
@@ -12,6 +12,7 @@ import {
   Register,
   SingleProduct,
 } from './pages';
+import CheckOut from './pages/Checkout';
 
 const router = createBrowserRouter([
   {
@@ -44,8 +45,8 @@ const router = createBrowserRouter([
         element: <CheckOut />,
       },
       {
-        path: 'orders',
-        element: <Orders />,
+        path: 'products',
+        element: <Products />,
       },
     ],
   },
