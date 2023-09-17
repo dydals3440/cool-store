@@ -15,7 +15,7 @@ const SubmitBtn = ({ text }) => {
           sending...
         </>
       ) : (
-        text || 'submit'
+        { text }
       )}
     </button>
   );

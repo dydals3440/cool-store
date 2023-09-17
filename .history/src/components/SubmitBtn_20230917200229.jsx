@@ -12,10 +12,9 @@ const SubmitBtn = ({ text }) => {
       {isSubmitting ? (
         <>
           <span className='loading loading-spinner'></span>
-          sending...
         </>
       ) : (
-        text || 'submit'
+        { text }
       )}
     </button>
   );
