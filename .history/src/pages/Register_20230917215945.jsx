@@ -21,7 +21,7 @@ const Register = () => {
             to='/register'
             className='ml-2 link link-hover link-primary capitalize'
           >
-            login
+            register
           </Link>
         </p>
       </Form>

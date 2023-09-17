@@ -16,12 +16,12 @@ const Register = () => {
           <SubmitBtn text='register' />
         </div>
         <p className='text-center'>
-          Already a member?
+          Not a Member Yet?
           <Link
             to='/register'
             className='ml-2 link link-hover link-primary capitalize'
           >
-            login
+            register
           </Link>
         </p>
       </Form>
