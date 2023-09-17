@@ -6,7 +6,7 @@ const Login = () => {
     <section className='h-screen grid place-items-center'>
       <Form
         method='post'
-        className='card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4'
+        className='card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y'
       >
         <h4 className='text-center text-3xl font-bold'>Login</h4>
         <FormInput
@@ -24,20 +24,17 @@ const Login = () => {
         <div className='mt-4'>
           {/* type: submit 별도의 요청 처리가 들어간 버튼 */}
           <SubmitBtn text='login' />
+          {/* 별도의 요청처리 x */}
+          <button type='button' className='btn btn-secondary btn-block'>
+            guest user
+          </button>
+          <p className='text-center'>
+            Not a Member Yet?{' '}
+            <Link to='/register' className='ml-2 link link-hover'>
+              Register
+            </Link>
+          </p>
         </div>
-        {/* 별도의 요청처리 x */}
-        <button type='button' className='btn btn-secondary btn-block'>
-          guest user
-        </button>
-        <p className='text-center'>
-          Not a Member Yet?
-          <Link
-            to='/register'
-            className='ml-2 link link-hover link-primary capitalize'
-          >
-            register
-          </Link>
-        </p>
       </Form>
     </section>
   );
