@@ -45,7 +45,7 @@ const Navbar = () => {
             {/* SUN ICONS */}
             <BsSunFill className='swap-on h4 w4' />
             {/* MOON ICONS */}
-            <BsMoonFill className='swap-off h4 w4' />
+            <BsMoonFill className='swap-on h4 w4' />
           </label>
           {/* CART LINK */}
           <NavLink to='/cart' className='btn btn-ghost btn-circle btn-md ml-4'>
