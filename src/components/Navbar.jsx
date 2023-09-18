@@ -2,13 +2,31 @@ import { BsCart3, BsMoonFill, BsSunFill } from 'react-icons/bs';
 import { FaBarsStaggered } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
 import NavLinks from './NavLinks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const themes = {
+  winter: 'winter',
+  dracula: 'dracula',
+};
+
+const getThemeFromLocalStorage = () => {
+  return localStorage.getItem('theme') || themes.winter;
+};
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(getThemeFromLocalStorage());
   const handleTheme = () => {
-    setTheme((theme) => !theme);
+    const { winter, dracula } = themes;
+    const newTheme = theme === winter ? dracula : winter;
+    setTheme(newTheme);
   };
+
+  useEffect(() => {
+    // html 요소에 접근해서, 'data-theme'이라는 속성에 them을 대입!
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
   return (
     <nav className='bg-base-200'>
       <div className='navbar align-element'>
@@ -43,7 +61,7 @@ const Navbar = () => {
           <label className='swap swap-rotate'>
             <input type='checkbox' onChange={handleTheme} />
             {/* SUN ICONS */}
-            <BsSunFill className='swap-on h4 w4' />
+            <BsSunFill className='swap-on  h4 w4' />
             {/* MOON ICONS */}
             <BsMoonFill className='swap-off h4 w4' />
           </label>
