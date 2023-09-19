@@ -20,7 +20,7 @@ const Navbar = () => {
     const newTheme = theme === winter ? dracula : winter;
     setTheme(newTheme);
   };
-  //
+  // 테마가 변경될때마다,
   useEffect(() => {
     // html 요소에 접근해서, 'data-theme'이라는 속성에 them을 대입!
     document.documentElement.setAttribute('data-theme', theme);
