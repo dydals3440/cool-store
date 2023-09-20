@@ -11,4 +11,5 @@ export { default as ProductsGrid } from './ProductsGrid';
 export { default as Filters } from './Filters';
 export { default as PaginationContainer } from './PaginationContainer';
 export { default as ProductsContainer } from './ProductsContainer';
-export { default as FormSelect } from './FormSelect.jsx';
+export { default as FormSelect } from './FormSelect';
+export { default as FormRange } from './FormRange';
