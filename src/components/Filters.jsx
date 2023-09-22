@@ -59,6 +59,7 @@ const Filters = () => {
         search
       </button>
       <Link to='/products' className='btn btn-accent btn-sm'>
+        {/* 필터 query param 초기화 */}
         reset
       </Link>
     </Form>
