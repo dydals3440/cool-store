@@ -2,31 +2,15 @@ import { BsCart3, BsMoonFill, BsSunFill } from 'react-icons/bs';
 import { FaBarsStaggered } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
 import NavLinks from './NavLinks';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-
-const themes = {
-  winter: 'winter',
-  dracula: 'dracula',
-};
-
-const getThemeFromLocalStorage = () => {
-  return localStorage.getItem('theme') || themes.winter;
-};
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTheme } from '../features/user/userSlice';
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(getThemeFromLocalStorage());
+  const dispatch = useDispatch();
   const handleTheme = () => {
-    const { winter, dracula } = themes;
-    const newTheme = theme === winter ? dracula : winter;
-    setTheme(newTheme);
+    dispatch(toggleTheme());
   };
-  // 테마가 변경될때마다,
-  useEffect(() => {
-    // html 요소에 접근해서, 'data-theme'이라는 속성에 them을 대입!
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
 
   // Reducer
   const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
