@@ -16,7 +16,7 @@ const getCartFromLocalStorage = () => {
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: defaultState,
+  initialState: getCartFromLocalStorage(),
   reducers: {
     addItem: (state, action) => {
       const { product } = action.payload;
@@ -26,10 +26,9 @@ const cartSlice = createSlice({
       } else {
         state.cartItems.push(product);
       }
+
       state.numItemsInCart += product.amount;
       state.cartTotal += product.price * product.amount;
-
-      // 내부 메서드 호출
       cartSlice.caseReducers.calculateTotals(state);
       toast.success('Item added to cart');
     },

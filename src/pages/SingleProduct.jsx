@@ -27,8 +27,8 @@ const SingleProduct = () => {
 
   const cartProduct = {
     // 제품 아이디에, 색상을 더함 (카드에 실었다면 액수를 증가시키면됨)
-    cartId: product.id + productColor,
-    productId: product.id,
+    cartID: product.id + productColor,
+    productID: product.id,
     image,
     title,
     price,

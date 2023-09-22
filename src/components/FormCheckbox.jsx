@@ -2,7 +2,7 @@ const FormCheckbox = ({ label, name, defaultValue, size }) => {
   return (
     <div className='form-control items-center'>
       <label htmlFor={name} className='label cursor-pointer'>
-        <spa className='label-text capitalize'>{label}</spa>
+        <span className='label-text capitalize'>{label}</span>
       </label>
       <input
         type='checkbox'
