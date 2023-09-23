@@ -6,6 +6,10 @@ const themes = {
   dracula: 'dracula',
 };
 
+const getUserFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('user')) || null;
+};
+
 const getThemeFromLocalStorage = () => {
   const theme = localStorage.getItem('theme') || themes.winter;
   // html 요소에 접근해서, 'data-theme'이라는 속성에 them을 대입!
@@ -14,7 +18,7 @@ const getThemeFromLocalStorage = () => {
 };
 
 const initialState = {
-  user: { username: 'coding addict' },
+  user: getUserFromLocalStorage(),
   theme: getThemeFromLocalStorage(),
 };
 
@@ -23,7 +27,9 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     loginUser: (state, action) => {
-      console.log('login');
+      const user = { ...action.payload.user, token: action.payload.jwt };
+      localStorage.setItem('user', JSON.stringify(user));
+      console.log(user);
     },
     logoutUser: (state) => {
       state.user = null;
