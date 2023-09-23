@@ -1,6 +1,15 @@
 import { FormInput, SubmitBtn } from '../components';
 import { Form, Link } from 'react-router-dom';
 
+// 이거는 훅이 아니라 useDispatch가 작동하지않음;
+// store를 app.js를 통해서 직접적으로 넘기는 방법사용!
+// 보통 경로에 action: loginAction이렇게 넘기는데, action: loginAction(store)를 넘기면됨!
+// 문제점있음, App.js에서 실행되는 순간에 발동한다는 것, form을 제출할 떄가 아닌,  화살표 함수를 한번 더 통하면됨, 이 함수를 반환하는 함수로 변경해주면 됨.
+export const action = (store) => async () => {
+  console.log(store);
+  return null;
+};
+
 const Login = () => {
   return (
     <section className='h-screen grid place-items-center'>
