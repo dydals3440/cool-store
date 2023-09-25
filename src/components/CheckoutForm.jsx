@@ -42,7 +42,7 @@ export const action =
         'there was an error placing your order';
       toast.error(errorMessage);
       // 400 => bad request 401 => invalid credential(unAuthorized Error)
-      if (error.response.status === 401) return redirect('/login');
+      if (error.response.status === 401 || 403) return redirect('/login');
       return null;
     }
   };
