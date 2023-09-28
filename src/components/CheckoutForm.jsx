@@ -3,6 +3,7 @@ import SubmitBtn from './SubmitBtn';
 import FormInput from './FormInput';
 import { customFetch, formatPrice } from '../utils';
 import { toast } from 'react-toastify';
+import { clearCart } from '../features/cart/cartSlice';
 
 export const action =
   (store) =>
@@ -32,11 +33,11 @@ export const action =
           },
         }
       );
-      //   console.log(response);
       store.dispatch(clearCart());
       toast.success('order placed successfully');
       return redirect('/orders');
     } catch (error) {
+      console.log(error);
       const errorMessage =
         error?.response?.data?.error?.message ||
         'there was an error placing your order';
@@ -49,7 +50,7 @@ export const action =
 
 const CheckoutForm = () => {
   return (
-    <Form method='POST' className='flex flex-col gap-y-4'>
+    <Form method='post' className='flex flex-col gap-y-4'>
       <h4 className='font-medium text-xl capitalize'>shipping information</h4>
       <FormInput label='first name' name='name' type='text' />
       <FormInput label='address' name='address' type='address' />
