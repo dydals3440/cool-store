@@ -1,4 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 import {
   About,
   Cart,
@@ -27,6 +30,14 @@ import { action as loginAction } from './pages/Login';
 import { action as checkoutAction } from './components/CheckoutForm';
 import { store } from './store/store';
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -37,13 +48,13 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
         errorElement: <ErrorElement />,
-        loader: landingLoader,
+        loader: landingLoader(queryClient),
       },
       {
         path: 'products',
         element: <Products />,
         errorElement: <ErrorElement />,
-        loader: productsLoader,
+        loader: productsLoader(queryClient),
       },
       {
         path: 'products/:id',
@@ -63,12 +74,13 @@ const router = createBrowserRouter([
         path: 'checkout',
         element: <CheckOut />,
         loader: checkoutLoader(store),
-        action: checkoutAction(store),
+        // loader가 아닌 action 새 주문을 만들때 주문 쿼리를 제거할 것
+        action: checkoutAction(store, queryClient),
       },
       {
         path: 'orders',
         element: <Orders />,
-        loader: ordersLoader(store),
+        loader: ordersLoader(store, queryClient),
       },
     ],
   },
@@ -87,7 +99,12 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 };
 
 export default App;

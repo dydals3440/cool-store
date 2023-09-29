@@ -11,6 +11,7 @@ const ComplexPaginationContainer = () => {
 
   const handlePageChange = (pageNumber) => {
     const searchParams = new URLSearchParams(search);
+    console.log(searchParams.toString());
     searchParams.set('page', pageNumber);
     navigate(`${pathname}?${searchParams.toString()}`);
   };
