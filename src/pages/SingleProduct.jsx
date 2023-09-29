@@ -5,16 +5,36 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../features/cart/cartSlice';
 
+// // Landing Page는 param이 없었음
+// const singleProductQuery = (id) => {
+//   // 매우 중요, ID를 쿼리 키에 추가, 추가하지 않으면, 모두 하나의 쿼리로 취급
+//   return {
+//     queryKey: ['singleProduct', id],
+//     queryFn: () => customFetch(`/products/${id}`),
+//   };
+// };
+const singleProductQuery = (id) => {
+  return {
+    queryKey: ['singleProduct', id],
+    queryFn: () => customFetch(`/products/${id}`),
+  };
+};
+
 export const loader =
   (queryClient) =>
   async ({ params }) => {
-    const response = await customFetch(`/products/${params.id}`);
-    const singleProduct = response.data.data;
-    return { product: singleProduct };
+    // customFetch(`/products/${params.id}`
+    const response = await queryClient.ensureQueryData(
+      singleProductQuery(params.id)
+    );
+    console.log(response);
+
+    return { product: response.data.data };
   };
 
 const SingleProduct = () => {
   const { product } = useLoaderData();
+  console.log(product);
   const { image, title, price, description, colors, company } =
     product.attributes;
   const wonAmount = formatPrice(price);
