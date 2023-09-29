@@ -2,6 +2,30 @@ import { Filters, PaginationContainer, ProductsContainer } from '../components';
 import { customFetch } from '../utils';
 const url = '/products';
 
+const allProductsQuery = (queryParams) => {
+  const { search, category, company, sort, price, shipping, page } =
+    queryParams;
+
+  return {
+    queryKey: [
+      'products',
+      search ?? '',
+      category ?? 'all',
+      category ?? 'all',
+      company ?? 'all',
+      sort ?? 'a-z',
+      price ?? 100000,
+      shipping ?? false,
+      page ?? 1,
+    ],
+    queryFn: () =>
+      customFetch(url, {
+        // 그냥 params이라하면 못읽음, 위에서 queryParams로 구조분해할당했기 때문
+        params: queryParams,
+      }),
+  };
+};
+
 export const loader =
   (queryClient) =>
   async ({ request }) => {
@@ -20,9 +44,11 @@ export const loader =
     // console.log(params);
 
     // axios의 두번쨰 인자로, 파람을 넘길 수 있음.
-    const response = await customFetch(url, {
-      params,
-    });
+
+    // await customFetch(url, {params });
+    const response = await queryClient.ensureQueryData(
+      allProductsQuery(params)
+    );
     const products = response.data.data;
     const meta = response.data.meta;
 
