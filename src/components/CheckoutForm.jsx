@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { clearCart } from '../features/cart/cartSlice';
 
 export const action =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData);
@@ -33,6 +33,8 @@ export const action =
           },
         }
       );
+      // 주문을하고, removeQueries를 안해주면 최신 정보가 업뎃되지않음. 계속 지워주고, 새로운 쿼리를 받아야함!
+      queryClient.removeQueries(['orders']);
       store.dispatch(clearCart());
       toast.success('order placed successfully');
       return redirect('/orders');
